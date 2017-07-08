@@ -10,6 +10,7 @@ Functions:
 - log rotation implemented
 - monthly reports
 - can be monitorod with UpTimeRobot, Pingdom, etc. (just use http check for the status file)
+- everything is logged, daily logs kept for x days and rotated daily (slr.php)
 
 What it does?
 
@@ -17,5 +18,3 @@ What it does?
 - //send mail: sends test mail to monitoring address
 - //wait and check mail 1st: wait for x seconds and check if it arrived, if not logs it
 - //wait and check mail 2nd: wait for x seconds and check if it arrived, if not sends alert
-
-everything is logged, daily logs kept for x days and rotated daily (slr.php)

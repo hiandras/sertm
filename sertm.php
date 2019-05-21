@@ -1,5 +1,5 @@
 <?php
-// SERTM v1.0
+// SERTM v1.01
 // Simple Email Round Trip Monitor
 // send mail, wait, check if arrives, alert, log
 
@@ -39,7 +39,7 @@ function mymail($mailfromf, $mailtof, $subjectf, $messagef) {
     $headers = 'From: ' . $mailfromf . "\r\n" .
         'Reply-To: ' . $mailfromf . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
-    mail($mailtof, $subjectf, $messagef, $headers);
+    mail($mailtof, $subjectf, $messagef, $headers, "-f " . $mailfromf);
 }
 
 //start

@@ -1,5 +1,5 @@
 <?php
-// SERTM v1.01
+// SERTM v1.1
 // Simple Email Round Trip Monitor
 // send mail, wait, check if arrives, alert, log
 
@@ -10,6 +10,7 @@ $alertservername = "servername";
 $mailfrom = "script@example.com";
 $mailto = "monitoring@example.com"; // monitoring address
 $pop3server = "pop3.example.com";
+$pop3serverssl = "no";
 $pop3login = "monitoring@example.com";
 $pop3password = "password";
 $alertto = "alertto@example.com"; // alerting address, if empty, no mail is sent // use , for more addresses
@@ -86,7 +87,11 @@ do {
     sleep($waitfor);
     mylog ("Waited " . $waitfor . " seconds (" . $j . ")", $logfilename, $debug);
 
-    $mbox = imap_open('{'.$pop3server.'/pop3}INBOX', $pop3login, $pop3password);
+    if ($pop3serverssl == "no") {
+        $mbox = imap_open('{'.$pop3server.'/pop3}INBOX', $pop3login, $pop3password);
+    } else {
+        $mbox = imap_open('{'.$pop3server.':995/pop3/ssl}INBOX', $pop3login, $pop3password);
+    }
     $count = imap_num_msg($mbox);
     $arrived = 0 ;
     for($i = 1; $i <= $count; $i++) {
